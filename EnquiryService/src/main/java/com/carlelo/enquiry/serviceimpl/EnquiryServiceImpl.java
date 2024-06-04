@@ -1,6 +1,7 @@
 package com.carlelo.enquiry.serviceimpl;
 
 
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,17 @@ public class EnquiryServiceImpl implements EnquiryServiceI
 	{
 		return er.save(ed);
 	}
+
+
+	@Override
+	public List<EnquiryDetails> getAllData() {
+	
+		return er.findAll();
+	}
+
+
+
+
+
 
 }
