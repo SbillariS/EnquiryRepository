@@ -16,12 +16,7 @@ import com.carlelo.enquiry.model.EnquiryDetails;
 public interface EnquiryServiceI 
 {
  
-	List<EnquiryDetails> deleteEnquiryDetails(String equiryId);
-
-public EnquiryDetails addEnquiry(EnquiryDetails ed);
-
-
-public List<EnquiryDetails> getAllData();
-
-
+	public List<EnquiryDetails> deleteEnquiryDetails(String equiryId);
+     public EnquiryDetails addEnquiry(EnquiryDetails ed);
+     public List<EnquiryDetails> getAllData();
 }	 
