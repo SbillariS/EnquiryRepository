@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
  
 import com.carlelo.enquiry.model.EnquiryDetails; 
 
-import com.carlelo.enquiry.model.EnquiryDetails; 
 import com.carlelo.enquiry.repository.EnquiryRepository;
 import com.carlelo.enquiry.servicei.EnquiryServiceI;
 @Service
@@ -33,6 +32,19 @@ public class EnquiryServiceImpl implements EnquiryServiceI
 	@Override
 	public List<EnquiryDetails> getAllData() {
 	
+		return er.findAll();
+	}
+
+	@Override
+	public EnquiryDetails updateEnquiryDetails(EnquiryDetails ee) {
+		
+		return er.save(ee);
+	}
+
+	@Override
+	public List<EnquiryDetails> deleteAllEnquiries() 
+	{
+		er.deleteAll();
 		return er.findAll();
 	}
 
