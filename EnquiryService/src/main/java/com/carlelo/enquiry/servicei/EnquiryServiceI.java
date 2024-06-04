@@ -8,9 +8,7 @@ import com.carlelo.enquiry.model.EnquiryDetails;
 
 
 
-import java.util.List;
 
-import com.carlelo.enquiry.model.EnquiryDetails;
  
 
 public interface EnquiryServiceI 
@@ -22,6 +20,8 @@ public EnquiryDetails addEnquiry(EnquiryDetails ed);
 
 
 public List<EnquiryDetails> getAllData();
+
+EnquiryDetails updateEnquiryDetails(EnquiryDetails ee);
 
 
 }	 
