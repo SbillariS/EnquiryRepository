@@ -8,4 +8,11 @@ import com.carlelo.enquiry.model.EnquiryDetails;
 public interface EnquiryRepository extends JpaRepository<EnquiryDetails, String>
 {
 
+
+
+
+	
+
+	
+
 }
