@@ -19,4 +19,6 @@ public class EnquiryDetails
     private String panCardNo;
     @OneToOne(cascade=CascadeType.ALL)
     private CibilDetails cibil;
+    
+    
 }
