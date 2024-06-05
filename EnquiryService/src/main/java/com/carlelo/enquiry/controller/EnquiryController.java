@@ -59,4 +59,10 @@ public class EnquiryController
 		return new ResponseEntity<List<EnquiryDetails>>(list,HttpStatus.OK); 
 	}
 	
+	@GetMapping("/GetSingleEnquiry/{equiryId}")
+	public ResponseEntity<EnquiryDetails> GetSingleEnquiry(@PathVariable String equiryId)
+	{
+		EnquiryDetails ed=esi.GetSingleEnquiry(equiryId);
+		return new ResponseEntity<EnquiryDetails>(ed,HttpStatus.OK);
+	}
 }
