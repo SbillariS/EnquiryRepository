@@ -22,11 +22,10 @@ public class EnquiryServiceImpl implements EnquiryServiceI
 	
 	
 	@Override
-	public EnquiryDetails addEnquiry(EnquiryDetails ed)
+	public EnquiryDetails addEnquiry(EnquiryDetails ed,CibilDetails cd)
 	{
-		CibilService service=new CibilService();
-		CibilDetails cibil=service.generateRandomCibilDetails();
-		ed.setCibil(cibil);
+	
+	    ed.setCibil(cd);
 		return er.save(ed);
 	}
 

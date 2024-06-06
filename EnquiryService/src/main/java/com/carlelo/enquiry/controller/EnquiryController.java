@@ -17,10 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
-
-
-
+import com.carlelo.enquiry.model.CibilDetails;
 import com.carlelo.enquiry.model.EnquiryDetails;
 
 
@@ -34,12 +33,17 @@ public class EnquiryController
 {
 	@Autowired
 	EnquiryServiceI esi;
+	@Autowired
+	RestTemplate rs;
 	
 
 	@PostMapping("/addEnquiry")
 	public ResponseEntity<EnquiryDetails> addEnquiry(@RequestBody EnquiryDetails ed)
 	{
-		EnquiryDetails details=esi.addEnquiry(ed);
+		String url="http://localhost:9081/getcibilDetails";
+		CibilDetails cd=rs.getForObject(url,CibilDetails.class);
+		EnquiryDetails details=esi.addEnquiry(ed,cd);
+		
 		return new ResponseEntity<EnquiryDetails>(details,HttpStatus.CREATED);
 	}
 	
@@ -78,4 +82,5 @@ public class EnquiryController
 		EnquiryDetails ed=esi.GetSingleEnquiry(equiryId);
 		return new ResponseEntity<EnquiryDetails>(ed,HttpStatus.OK);
 	}
+
 }
