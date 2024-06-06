@@ -2,10 +2,12 @@ package com.carlelo.enquiry.serviceimpl;
  
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
- 
+
+import com.carlelo.enquiry.model.CibilDetails;
 import com.carlelo.enquiry.model.EnquiryDetails; 
 
 import com.carlelo.enquiry.repository.EnquiryRepository;
@@ -26,6 +28,9 @@ public class EnquiryServiceImpl implements EnquiryServiceI
 	@Override
 	public EnquiryDetails addEnquiry(EnquiryDetails ed)
 	{
+		CibilService service=new CibilService();
+		CibilDetails cibil=service.generateRandomCibilDetails();
+		ed.setCibil(cibil);
 		return er.save(ed);
 	}
 
