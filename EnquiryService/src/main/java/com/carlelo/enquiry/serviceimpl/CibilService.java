@@ -14,7 +14,7 @@ public class CibilService
     	  Random random=new Random();
     	  int score=random.nextInt(300, 900);
     	  CibilDetails details=new CibilDetails();
-    	  details.setCibilId("101");
+    	  details.setCibilId(id());
     	  details.setCibilScore(score);
     	  details.setRemark("Avg");
     	  details.setApplicable(true);
@@ -22,4 +22,17 @@ public class CibilService
     	  details.setToDate("16-06-2024");
 		  return details;  
       }
+      
+      //id
+     private static String x="carlelo";
+      
+      public static String id() {
+    	
+    	  Random r= new Random();
+    	  int i=r.nextInt(100, 300);
+    	  
+    	  String id1=x+i;
+    	  return id1;  
+      }
+      
 }
