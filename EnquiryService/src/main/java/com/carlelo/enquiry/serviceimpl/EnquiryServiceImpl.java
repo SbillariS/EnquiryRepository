@@ -31,6 +31,26 @@ public class EnquiryServiceImpl implements EnquiryServiceI
 		return er.findAll();
 	}
 
+	@Override
+	public EnquiryDetails updateEnquiryDetails(EnquiryDetails ee) {
+		
+		return er.save(ee);
+	}
+
+	@Override
+	public List<EnquiryDetails> deleteAllEnquiries() 
+	{
+		er.deleteAll();
+		return er.findAll();
+	}
+
+
+	@Override
+	public List<EnquiryDetails> deleteEnquiryDetails(String equiryId) {
+		er.deleteById(equiryId);
+		return er.findAll();
+	}
+
 
 
  
