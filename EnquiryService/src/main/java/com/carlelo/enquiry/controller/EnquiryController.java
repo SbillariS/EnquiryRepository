@@ -1,8 +1,14 @@
 package com.carlelo.enquiry.controller;
 import org.springframework.http.HttpStatus;
 import java.util.List;
+<<<<<<< HEAD
 
 import org.springframework.beans.factory.annotation.Autowired; 
+=======
+import java.util.Random;
+
+import org.springframework.beans.factory.annotation.Autowired;
+>>>>>>> branch 'main' of https://github.com/SbillariS/EnquiryRepository.git
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +20,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+<<<<<<< HEAD
+=======
+import com.carlelo.enquiry.model.CibilDetails;
+>>>>>>> branch 'main' of https://github.com/SbillariS/EnquiryRepository.git
 import com.carlelo.enquiry.model.EnquiryDetails;
 
 
@@ -65,4 +75,10 @@ public class EnquiryController
 		return new ResponseEntity<List<EnquiryDetails>>(list,HttpStatus.OK); 
 	}
 	
+	@GetMapping("/GetSingleEnquiry/{equiryId}")
+	public ResponseEntity<EnquiryDetails> GetSingleEnquiry(@PathVariable String equiryId)
+	{
+		EnquiryDetails ed=esi.GetSingleEnquiry(equiryId);
+		return new ResponseEntity<EnquiryDetails>(ed,HttpStatus.OK);
+	}
 }

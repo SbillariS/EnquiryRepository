@@ -19,6 +19,7 @@ public interface EnquiryServiceI
      public List<EnquiryDetails> getAllData();
      public EnquiryDetails updateEnquiryDetails(EnquiryDetails ee);
 	 public List<EnquiryDetails> deleteAllEnquiries();
+	 public EnquiryDetails GetSingleEnquiry(String equiryId);
 
 
 }	 
