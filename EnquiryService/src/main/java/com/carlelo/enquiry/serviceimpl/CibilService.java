@@ -34,5 +34,21 @@ public class CibilService
     	  String id1=x+i;
     	  return id1;  
       }
+      private String getRemarkForScore(int score)
+      {
+    	  if(score >=750) {
+    		  return "Good";
+    	  }else if (score >=600) {
+    		  return "average";
+    	  }else {
+    		  return "Bad";
+    	  }
+     
+    	  
+    	  
+    	  
+    	  
+    	  
+      }
       
 }
