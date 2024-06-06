@@ -1,5 +1,6 @@
 package com.carlelo.enquiry.serviceimpl;
 
+import java.util.Calendar;
 import java.util.Random;
 
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ public class CibilService
     	  Random random=new Random();
     	  int score=random.nextInt(300, 900);
     	  CibilDetails details=new CibilDetails();
-    	  details.setCibilId("101");
+    	  details.setCibilId("103");
     	  details.setCibilScore(score);
     	  details.setRemark("Avg");
     	  details.setApplicable(true);
@@ -22,4 +23,5 @@ public class CibilService
     	  details.setToDate("16-06-2024");
 		  return details;  
       }
+      
 }
