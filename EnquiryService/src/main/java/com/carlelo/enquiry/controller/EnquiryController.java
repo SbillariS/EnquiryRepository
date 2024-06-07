@@ -80,6 +80,7 @@ public class EnquiryController
 		return new ResponseEntity<EnquiryDetails>(ed,HttpStatus.OK);
 	}
 	
+	
 	@GetMapping("/simpleMail/{toEmail}/{enquiryId}")
 	public ResponseEntity<String> sendSimpleMail(@PathVariable String toEmail, @PathVariable String enquiryId)
 	{

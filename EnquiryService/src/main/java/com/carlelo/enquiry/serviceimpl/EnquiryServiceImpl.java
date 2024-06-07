@@ -67,7 +67,6 @@ public class EnquiryServiceImpl implements EnquiryServiceI
 		return null;
 	}
 
-
 	@Override
 	public List<EnquiryDetails> deleteEnquiryDetails(String equiryId) {
 		er.deleteById(equiryId);
