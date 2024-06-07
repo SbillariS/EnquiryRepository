@@ -20,7 +20,7 @@ public interface EnquiryRepository extends JpaRepository<EnquiryDetails, String>
 
 
 
-	public void deleteById(String equiryId);	
+	public void deleteById(String equiryId);
 
 }
 

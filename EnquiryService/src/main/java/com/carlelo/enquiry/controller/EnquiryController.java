@@ -27,9 +27,10 @@ import com.carlelo.enquiry.model.EnquiryDetails;
 
 
 import com.carlelo.enquiry.servicei.EnquiryServiceI;
+import com.cjc.service.MailService; 
 
 @RestController
-public class EnquiryController 
+public class EnquiryController
 {
 	@Autowired
 	EnquiryServiceI esi;
@@ -81,6 +82,15 @@ public class EnquiryController
 	{
 		EnquiryDetails ed=esi.GetSingleEnquiry(equiryId);
 		return new ResponseEntity<EnquiryDetails>(ed,HttpStatus.OK);
-	}
-
+	} 
+	
+	
+	@GetMapping("/simpleMail/{toEmail}/{enquiryId}")
+	public ResponseEntity<String> sendSimpleMail(@PathVariable String toEmail, @PathVariable String enquiryId)
+	{
+		esi.sendSimpleMail(toEmail, enquiryId); 
+		return new ResponseEntity<String>("EMail sent successfully...!", HttpStatus.OK);
+		
+	} 
+ 
 }
