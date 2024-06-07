@@ -62,11 +62,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.cjc</groupId>
-			<artifactId>MailSendingPoc</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>

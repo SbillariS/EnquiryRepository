@@ -78,32 +78,36 @@ public class EnquiryServiceImpl implements EnquiryServiceI
 	{
 		
 	Optional<EnquiryDetails> op=er.findById(enquiryId); 
+	SimpleMailMessage simpleMail=new SimpleMailMessage();
     if(op.isPresent()) 
-	
 	{ 
-		
-		SimpleMailMessage simpleMail=new SimpleMailMessage();
-		
+      boolean b=op.get().getCibil().isApplicable();
+		if(b==true)
+		{		
 		simpleMail.setTo(toEmail);
 		simpleMail.setFrom(FROM_EMAIL);
-		simpleMail.setSubject("Regarding Car Loan Requirement");
-		simpleMail.setText("Hello "+op.get().getFullName()+"age : "+op.get().getAge()
-				+"\n You have shown your submitted your requirements in CarLelo.com for Car Loan Services. "
-				+"\n\n Below is the customer details : "
-				+"\n Enquiry Id : "+op.get().getEquiryId() 
-				+"\n Email Id : "+op.get().getApplicantEmail()
-				+"\n Contact number : "+op.get().getContactNo()
-			               +"\n\n We are please to inform you that,"
-				+ "As per Pan card number : "+op.get().getPanCardNo() +" your Cibil Score as per RBI regulations is : "+op.get().getCibil()
-				+" As you have fulfilled our requirements of minimum Cibil Score." 
-			
-						+ "\n\n CarLelo has approved the loan amount as you asked for ! "
-						+ "For any further queries, please feel free to connect : "+
-				"\n\n Sincerely, \nShital Billari, \n1234567890");
-		sender.send(simpleMail);
-		
-		System.out.println("Mail Sent Successfully...");
-	}	
+		simpleMail.setSubject("Regarding Car Loan Enquiry");
+		simpleMail.setText("Hello "+op.get().getFullName()
+				+",\n\nWe are pleased to inform you that you are eligible for car loan. "
+				+ "please apply for loan on carlelo.com"
+		        + "\n\nFor any further queries, please feel free to connect : "+
+				"\n\n Sincerely, \nLoan Department, \n1234567890\n carlelo@gmail.com");
+		sender.send(simpleMail);		
+		}
+		else {
+			simpleMail.setTo(toEmail);
+			simpleMail.setFrom(FROM_EMAIL);
+			simpleMail.setSubject("LETTER FOR REJECTION OF HOME LOAN REQUEST");
+			simpleMail.setText("Hello "+op.get().getFullName()+",\n\nThis letter is to notify you about "
+					+ "the rejection of your car loan request that you submitted at CarLelo.com  "
+					+ "Unfortunately, You were failed to fulfill the criteria that is must for the loan approval at our bank "
+					+ "or the credentials and assets that you provided failed to be verified by our verification team. "
+					+ "\n\nThanks for showing interest in our loan scheme.\r\n"
+					+ "\nYou may contact the concerned branch for further queries if any.\r\n"
+					+ "\n\nLoan Department\n9087675677\ncarlelo@gmail.com");
+			sender.send(simpleMail);
+		}
+	}
 	}	
  
 }
