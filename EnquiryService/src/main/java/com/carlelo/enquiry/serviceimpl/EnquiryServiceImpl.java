@@ -18,8 +18,6 @@ public class EnquiryServiceImpl implements EnquiryServiceI
 	@Autowired
 	EnquiryRepository er;
  
-	
-	
 	@Override
 	public EnquiryDetails addEnquiry(EnquiryDetails ed,CibilDetails cd)
 	{
