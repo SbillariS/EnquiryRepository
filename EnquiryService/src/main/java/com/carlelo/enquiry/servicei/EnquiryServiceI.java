@@ -15,8 +15,8 @@ public interface EnquiryServiceI
      public EnquiryDetails updateEnquiryDetails(EnquiryDetails ee);
 	 public List<EnquiryDetails> deleteAllEnquiries();
 	 public EnquiryDetails GetSingleEnquiry(String equiryId);
-	
 	 public void  sendSimpleMail(String toEmail, String enquiryId);
+	public CibilDetails getcibilDetails(String enquiryId);
 
 
 }	 

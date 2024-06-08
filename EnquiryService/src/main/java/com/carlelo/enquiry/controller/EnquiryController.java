@@ -91,5 +91,11 @@ public class EnquiryController
 		return new ResponseEntity<String>("EMail sent successfully...!", HttpStatus.OK);
 	} 
 	
- 
+    @GetMapping("/getcibilDetails/{enquiryId}")
+    public ResponseEntity<CibilDetails> getcibilDetails(@PathVariable String enquiryId)
+    {
+    	CibilDetails cibil=esi.getcibilDetails(enquiryId);
+		return new ResponseEntity<CibilDetails>(cibil,HttpStatus.OK);
+    	
+    }
 }

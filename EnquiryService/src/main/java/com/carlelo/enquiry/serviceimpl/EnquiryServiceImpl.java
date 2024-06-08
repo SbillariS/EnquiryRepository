@@ -108,6 +108,22 @@ public class EnquiryServiceImpl implements EnquiryServiceI
 			sender.send(simpleMail);
 		}
 	}
-	}	
- 
+	}
+
+
+	@Override
+	public CibilDetails getcibilDetails(String enquiryId) 
+	{
+		Optional<EnquiryDetails> op=er.findById(enquiryId);
+		if(op.isPresent())
+		{
+			return op.get().getCibil();
+		}
+		return null;
+	}
+
+
+	
+
+	
 }
