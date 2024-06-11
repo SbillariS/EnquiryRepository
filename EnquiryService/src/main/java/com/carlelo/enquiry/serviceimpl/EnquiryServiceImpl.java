@@ -12,6 +12,11 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import com.carlelo.enquiry.exception.AgeInvalidException;
+import com.carlelo.enquiry.exception.ContactNoInvalidException;
+import com.carlelo.enquiry.exception.EmailIdInvalidException;
+import com.carlelo.enquiry.exception.NameNotEmptyAndNotNullException;
+import com.carlelo.enquiry.exception.PanCardNoInvaliidException;
 import com.carlelo.enquiry.model.CibilDetails;
 import com.carlelo.enquiry.model.EnquiryDetails; 
 
@@ -27,9 +32,42 @@ public class EnquiryServiceImpl implements EnquiryServiceI
 	@Override
 	public EnquiryDetails addEnquiry(EnquiryDetails ed,CibilDetails cd)
 	{
-	
-	    ed.setCibil(cd);
-		return er.save(ed);
+	    if(ed.getAge()>=18 && ed.getAge()<=80)
+	    {
+	    	if(ed.getApplicantEmail().endsWith("@gmail.com"))
+	    	{
+	    		if(ed.getFullName()!=null && ed.getFullName()!="")
+	    		{
+	    			 if(ed.getPanCardNo().length()==10)
+	    			 {
+	    				 String mobileNumberStr = String.valueOf(ed.getContactNo());
+	    		        if (mobileNumberStr.length() == 10 || mobileNumberStr.matches("\\d{10}")) 
+	    		        {
+	                      ed.setCibil(cd);
+		                  return er.save(ed);
+	    		        }
+	    				 
+	    				 else {
+	    					 throw new ContactNoInvalidException("Please, Enter 10 digit Mobile Number");
+	    				 }
+	    			 }
+	    			 else {
+	    				 throw new PanCardNoInvaliidException("Please, Enter valid Pan Card Number");
+	    			 }
+	    		}
+	    		else {
+	    			throw new NameNotEmptyAndNotNullException("Please,Enter Your Name");
+	    		}
+	    	}
+	    	else
+	    	{
+	    		throw new EmailIdInvalidException("Your Email Id is Incorrect");
+	    	}
+	    }
+	    else
+	    {
+	    	throw new AgeInvalidException("please Enter valid Age in between 18 to 80");
+	    }
 	}
 
 
