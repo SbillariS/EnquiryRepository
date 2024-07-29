@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +27,7 @@ import com.carlelo.enquiry.model.EnquiryDetails;
 
 
 import com.carlelo.enquiry.servicei.EnquiryServiceI;
-
+@CrossOrigin("http://localhost:4200")
 @RestController
 public class EnquiryController
 {
@@ -47,10 +47,16 @@ public class EnquiryController
 		return new ResponseEntity<EnquiryDetails>(details,HttpStatus.CREATED);
 	}
 	
-	@ GetMapping("/enquiry")
+	@GetMapping("/enquiry")
 	public ResponseEntity<List<EnquiryDetails>> getAllData()
 	{
 		List<EnquiryDetails>l=esi.getAllData();
+		return new  ResponseEntity<List<EnquiryDetails>>(l,HttpStatus.OK);
+	}
+	@GetMapping("/getequriryStatusUpadate/{enquiryStatus}")
+	public ResponseEntity<List<EnquiryDetails>> getequriryStatusUpadate(@PathVariable String enquiryStatus)
+	{
+		List<EnquiryDetails>l=esi.getequriryStatusUpadate(enquiryStatus);
 		return new  ResponseEntity<List<EnquiryDetails>>(l,HttpStatus.OK);
 	}
 	
@@ -63,7 +69,7 @@ public class EnquiryController
 	}
 	
 	@DeleteMapping("/deleteEnquiry/{equiryId}")
-	public ResponseEntity<List<EnquiryDetails>> deleteEntity(@PathVariable String equiryId)
+	public ResponseEntity<List<EnquiryDetails>> deleteEntity(@PathVariable int equiryId)
 	{
 		List<EnquiryDetails> list=esi.deleteEnquiryDetails(equiryId); 
 		return new ResponseEntity<List<EnquiryDetails>>(list,HttpStatus.OK); 
@@ -77,7 +83,7 @@ public class EnquiryController
 	}
 	
 	@GetMapping("/GetSingleEnquiry/{equiryId}")
-	public ResponseEntity<EnquiryDetails> GetSingleEnquiry(@PathVariable String equiryId)
+	public ResponseEntity<EnquiryDetails> GetSingleEnquiry(@PathVariable int equiryId)
 	{
 		EnquiryDetails ed=esi.GetSingleEnquiry(equiryId);
 		return new ResponseEntity<EnquiryDetails>(ed,HttpStatus.OK);
@@ -85,17 +91,30 @@ public class EnquiryController
 	
 	
 	@GetMapping("/simpleMail/{toEmail}/{enquiryId}")
-	public ResponseEntity<String> sendSimpleMail(@PathVariable String toEmail, @PathVariable String enquiryId)
+	public ResponseEntity<String> sendSimpleMail(@PathVariable String toEmail, @PathVariable int enquiryId)
 	{
 		esi.sendSimpleMail(toEmail, enquiryId); 
 		return new ResponseEntity<String>("EMail sent successfully...!", HttpStatus.OK);
 	} 
 	
     @GetMapping("/getcibilDetails/{enquiryId}")
-    public ResponseEntity<CibilDetails> getcibilDetails(@PathVariable String enquiryId)
+    public ResponseEntity<CibilDetails> getcibilDetails(@PathVariable int enquiryId)
     {
     	CibilDetails cibil=esi.getcibilDetails(enquiryId);
-		return new ResponseEntity<CibilDetails>(cibil,HttpStatus.OK);
-    	
+		return new ResponseEntity<CibilDetails>(cibil,HttpStatus.OK);	
+    }
+    
+    @PutMapping("/upadateStatus/{enquiryId}")
+    public ResponseEntity<EnquiryDetails> upadateStatus(@PathVariable int enquiryId)
+    {
+    	EnquiryDetails enquiryOb=esi.upadateStatus(enquiryId);
+		return new ResponseEntity<EnquiryDetails>(enquiryOb,HttpStatus.OK);	
+    }
+    
+    @PutMapping("/rejectEnquiryStatus/{enquiryId}")
+    public ResponseEntity<EnquiryDetails> rejectEnquiryStatus(@PathVariable int enquiryId)
+    {
+    	EnquiryDetails enquiryOb=esi.rejectEnquiryStatus(enquiryId);
+		return new ResponseEntity<EnquiryDetails>(enquiryOb,HttpStatus.OK);	
     }
 }

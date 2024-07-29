@@ -91,7 +91,7 @@ public class EnquiryServiceImpl implements EnquiryServiceI
 	}
 
 	@Override
-	public EnquiryDetails GetSingleEnquiry(String equiryId)
+	public EnquiryDetails GetSingleEnquiry(int equiryId)
 	{
 		Optional<EnquiryDetails> op=er.findById(equiryId);
 		if(op.isPresent())
@@ -102,8 +102,8 @@ public class EnquiryServiceImpl implements EnquiryServiceI
 	}
 
 	@Override
-	public List<EnquiryDetails> deleteEnquiryDetails(String equiryId) {
-		er.deleteById(equiryId);
+	public List<EnquiryDetails> deleteEnquiryDetails(int equiryId) {
+		er.deleteById(equiryId);;
 		return er.findAll();
 	}
 
@@ -112,7 +112,7 @@ public class EnquiryServiceImpl implements EnquiryServiceI
 	@Autowired private static String FROM_EMAIL; 
 	
 	@Override
-	public void sendSimpleMail(String toEmail, String enquiryId)
+	public void sendSimpleMail(String toEmail, int enquiryId)
 	{
 		
 	Optional<EnquiryDetails> op=er.findById(enquiryId); 
@@ -150,7 +150,7 @@ public class EnquiryServiceImpl implements EnquiryServiceI
 
 
 	@Override
-	public CibilDetails getcibilDetails(String enquiryId) 
+	public CibilDetails getcibilDetails(int enquiryId) 
 	{
 		Optional<EnquiryDetails> op=er.findById(enquiryId);
 		if(op.isPresent())
@@ -161,7 +161,36 @@ public class EnquiryServiceImpl implements EnquiryServiceI
 	}
 
 
+	@Override
+	public EnquiryDetails upadateStatus(int enquiryId) 
+	{
+		Optional<EnquiryDetails> op=er.findById(enquiryId);
+	    op.get().setEnquiryStatus("to-OE");
+		return er.save(op.get());
+	
+	}
+
+
+	@Override
+	public List<EnquiryDetails> getequriryStatusUpadate(String enquiryStatus) {
+		
+		return er.findByEnquiryStatus("to-OE");
+	}
+
+
+	@Override
+	public EnquiryDetails rejectEnquiryStatus(int enquiryId) 
+	{
+		Optional<EnquiryDetails> op=er.findById(enquiryId);
+	    op.get().setEnquiryStatus("Rejected");
+		return er.save(op.get());	
+		}
+
+
+	
+
+}
 	
 
 	
-}
+

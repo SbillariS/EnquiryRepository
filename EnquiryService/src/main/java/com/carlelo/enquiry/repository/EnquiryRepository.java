@@ -2,6 +2,8 @@ package com.carlelo.enquiry.repository;
 
 
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,16 +13,8 @@ import jakarta.transaction.Transactional;
 
 @Transactional
 @Repository
-public interface EnquiryRepository extends JpaRepository<EnquiryDetails, String>
+public interface EnquiryRepository extends JpaRepository<EnquiryDetails, Integer>
 {
-
-	
-	
-
-
-
-
-	public void deleteById(String equiryId);
-
+	public List<EnquiryDetails> findByEnquiryStatus(String enquiryStatus);
 }
 
